@@ -187,6 +187,24 @@ show_menu() {
     done
 }
 
-# Ejecutar menú
+# Ejecutar menú o comando
 check_env
-show_menu
+
+# Si hay argumentos, ejecutar comando directo
+if [ $# -gt 0 ]; then
+    case "$1" in
+        start) start ;;
+        stop) stop ;;
+        config) configure ;;
+        info) show_info ;;
+        ssh) open_ssh ;;
+        *) 
+            echo -e "${RED}Comando desconocido: $1${NC}"
+            echo "Uso: $0 [start|stop|config|info|ssh]"
+            exit 1
+            ;;
+    esac
+else
+    # Si no hay argumentos, mostrar menú interactivo
+    show_menu
+fi
