@@ -74,3 +74,38 @@ El túnel se iniciará automáticamente junto con el servidor SFTP.
     ```bash
     docker-compose logs -f
     ```
+
+---
+
+# 🔮 Roadmap: Nexus Panel (v2.0)
+
+Estamos evolucionando este proyecto de un simple contenedor SFTP a un **Dashboard de Gestión de Servidores Completo**.
+
+## Objetivos del Proyecto
+Crear una solución "todo en uno" instalable vía CLI para gestionar servidores domésticos o VPS, similar a CasaOS o Portainer pero con características específicas de gestión de recursos y virtualización.
+
+## Funcionalidades Planeadas
+
+### 1. Instalación y Gestión
+- [ ] **Instalador Universal**: Script de una línea (Gemini CLI style) para desplegar todo el stack.
+- [ ] **Gestión de Usuarios**: Panel para crear múltiples usuarios SSH/SFTP con permisos aislados.
+- [ ] **Cloudflare Tunnel Nativo**: Integración profunda para exponer servicios sin abrir puertos, gestionado desde la UI.
+
+### 2. Dashboard Web (React/Next.js)
+- [ ] **Monitorización en Tiempo Real**: Gráficos de CPU, RAM, Disco y Red.
+- [ ] **Control de Recursos**: Sliders para limitar CPU/RAM de contenedores y VMs dinámicamente.
+- [ ] **Gestión de Energía**: Programar reinicios, apagados y encendidos.
+
+### 3. Virtualización y Contenedores
+- [ ] **Gestor de Docker**: Interfaz para buscar, instalar y gestionar contenedores (Apps).
+- [ ] **Gestor de VMs**: Creación y gestión de Máquinas Virtuales (KVM/QEMU) desde el navegador.
+- [ ] **App Store**: Catálogo de aplicaciones "One-Click" (Plex, Home Assistant, etc.).
+
+### 4. Configuración del Sistema
+- [ ] **Firewall & Puertos**: UI para abrir/cerrar puertos y gestionar reglas de firewall.
+- [ ] **Actualizaciones**: Sistema de actualización automática del panel y contenedores.
+
+## Arquitectura Propuesta
+*   **Frontend**: Next.js (React) con Tailwind CSS para una UI moderna y responsiva.
+*   **Backend**: Node.js o Python (FastAPI) para interactuar con el sistema (Docker Socket, Libvirt).
+*   **Base de Datos**: SQLite para almacenar configuraciones y usuarios.
