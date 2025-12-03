@@ -1,6 +1,33 @@
 {
     "HomePage": {
         "title": "Nexus Panel",
-        "welcome": "Welcome to Nexus Panel"
+        "welcome": "Welcome to Nexus Panel",
+        "description": "Comprehensive server, Docker container, and virtual machine management from a modern and powerful interface",
+        "features": {
+            "docker": {
+                "title": "Docker Management",
+                "description": "Full control over your containers, images, and Docker networks"
+            },
+            "monitoring": {
+                "title": "Real-time Monitoring",
+                "description": "CPU, RAM, and disk metrics updated instantly"
+            },
+            "multilang": {
+                "title": "Multi-language",
+                "description": "Native support for 5 major languages"
+            }
+        },
+        "getStarted": "Go to Dashboard",
+        "stats": {
+            "languages": "Languages",
+            "containers": "Containers",
+            "monitoring": "Monitoring"
+        }
+    },
+    "Dashboard": {
+        "title": "Dashboard",
+        "containers": "Containers",
+        "resources": "Resources",
+        "settings": "Settings"
     }
 }

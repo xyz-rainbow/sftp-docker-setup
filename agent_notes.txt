@@ -2,11 +2,86 @@
 Este archivo es para que yo (el Agente) deje notas, ideas o recordatorios para futuras sesiones.
 NO BORRAR NI SUBIR A GIT.
 
-## Estado Actual
-- Iniciando planificación de v2.0 (Dashboard).
-- Ramas creadas: v1-sftp-standalone, v2-dashboard.
+## Estado Actual (v2.0 - Actualizado 2025-12-03)
+- ✅ Proyecto clonado e instalado correctamente
+- ✅ Diseño moderno implementado con gradientes y glassmorphism
+- ✅ Landing page premium creada con animaciones
+- ✅ Dashboard funcional con estadísticas del sistema
+- ✅ Tabla de contenedores Docker con acciones
+- ✅ Sistema i18n configurado para Next.js 16
+- ✅ Soporte para 5 idiomas (EN, ES, ZH, HI, FR)
+- ✅ Servidor de desarrollo corriendo en http://localhost:3000
+
+## Mejoras Implementadas
+1. **Diseño Visual Premium**
+   - Gradientes vibrantes (púrpura-rosa)
+   - Efectos glassmorphism en tarjetas
+   - Animaciones suaves y micro-interacciones
+   - Tema oscuro optimizado
+
+2. **Landing Page**
+   - Hero section impactante
+   - 3 tarjetas de características con hover effects
+   - Estadísticas del proyecto
+   - CTA button con gradiente animado
+
+3. **Dashboard**
+   - 4 tarjetas de métricas del sistema (CPU, RAM, Disk, Network)
+   - Tabla de contenedores con datos mock
+   - Indicadores de estado visuales
+   - Botones de acción para cada contenedor
+
+4. **Internacionalización**
+   - Migrado a Next.js 16 routing system
+   - Estructura [locale] implementada
+   - Archivos de traducción actualizados
+   - Middleware convertido a proxy.ts
+
+## Próximos Pasos Sugeridos
+1. **Integración Docker API**
+   - Conectar con Docker Engine API
+   - Obtener datos reales de contenedores
+   - Implementar acciones (start, stop, restart, delete)
+
+2. **WebSocket para Real-time**
+   - Actualización automática de métricas
+   - Notificaciones de eventos Docker
+   - Estado de contenedores en vivo
+
+3. **Componentes Reutilizables**
+   - Crear biblioteca de componentes UI
+   - Card, Button, Badge, Table components
+   - Sistema de diseño documentado
+
+4. **Autenticación**
+   - Sistema de login/registro
+   - Protección de rutas
+   - Gestión de sesiones
+
+5. **Testing**
+   - Unit tests con Jest
+   - E2E tests con Playwright
+   - Coverage reports
 
 ## Ideas / Pendientes
-- Investigar librerías de i18n ligeras para Next.js.
-- Diseño del sistema de auto-update: ¿Script bash en cron o servicio en Node?
-- Modularidad: ¿Plugins? ¿Arquitectura de microservicios o monolito modular? -> Monolito modular es mejor para instalación simple.
+- ✅ Investigar librerías de i18n ligeras para Next.js → Implementado next-intl
+- 🔄 Diseño del sistema de auto-update: ¿Script bash en cron o servicio en Node?
+- ✅ Modularidad: Monolito modular para instalación simple
+- 🆕 Agregar gráficos con Chart.js o Recharts
+- 🆕 Sistema de notificaciones toast
+- 🆕 Modo claro/oscuro toggle
+- 🆕 Exportar datos de contenedores a CSV/JSON
+- 🆕 Búsqueda y filtrado de contenedores
+- 🆕 Paginación para listas largas
+
+## Notas Técnicas
+- Next.js 16 usa "proxy.ts" en lugar de "middleware.ts"
+- Tailwind CSS 4 tiene sintaxis diferente para algunas utilidades
+- React 19.2 con React Compiler habilitado
+- Turbopack como bundler por defecto en dev
+
+## Recursos Útiles
+- Docker API: https://docs.docker.com/engine/api/
+- Next-intl docs: https://next-intl-docs.vercel.app/
+- Tailwind CSS 4: https://tailwindcss.com/docs
+- React Compiler: https://react.dev/learn/react-compiler
