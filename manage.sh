@@ -118,30 +118,75 @@ open_ssh() {
     docker exec -it sftp_server bash
 }
 
-# Menú Principal
-main_menu() {
-    check_env
+# --- Funciones de UI ---
+
+# Función para leer una tecla (compatible con flechas)
+read_key() {
+    local key
+    read -rsn1 key 2>/dev/null >&2
+    if [[ "$key" == $'\x1b' ]]; then
+        read -rsn2 key
+        if [[ "$key" == "[A" ]]; then echo "UP"; fi
+        if [[ "$key" == "[B" ]]; then echo "DOWN"; fi
+    elif [[ "$key" == "" ]]; then
+        echo "ENTER"
+    else
+        echo "$key"
+    fi
+}
+
+# Menú Interactivo con Flechas
+show_menu() {
+    local options=("Iniciar / Reiniciar" "Detener" "Configurar" "Ver Información" "Abrir Terminal SSH" "Salir")
+    local descriptions=(
+        "Levanta los contenedores y aplica cambios"
+        "Detiene y elimina los contenedores"
+        "Define puerto, usuario y carpetas"
+        "Muestra IP, puerto y comandos de conexión"
+        "Accede a la terminal dentro del contenedor"
+        "Cierra este script"
+    )
+    local selected=0
+    local total=${#options[@]}
+
     while true; do
-        echo -e "\n${BLUE}=== Gestor SFTP Docker ===${NC}"
-        echo "1. Iniciar / Reiniciar"
-        echo "2. Detener"
-        echo "3. Configurar (Puerto, Usuario, Ruta)"
-        echo "4. Ver Información de Conexión"
-        echo "5. Abrir Terminal SSH (en contenedor)"
-        echo "6. Salir"
-        read -p "Selecciona una opción: " opt
+        clear
+        echo -e "${BLUE}=== Gestor SFTP Docker ===${NC}"
+        echo -e "Usa las flechas ${GREEN}↑/↓${NC} para moverte y ${GREEN}ENTER${NC} para seleccionar.\n"
+
+        for ((i=0; i<total; i++)); do
+            if [ $i -eq $selected ]; then
+                echo -e "${GREEN}> ${options[$i]}${NC}  ${BLUE}(${descriptions[$i]})${NC}"
+            else
+                echo -e "  ${options[$i]}  ${NC}(${descriptions[$i]})${NC}"
+            fi
+        done
+
+        local action=$(read_key)
         
-        case $opt in
-            1) start ;;
-            2) stop ;;
-            3) configure ;;
-            4) show_info ;;
-            5) open_ssh ;;
-            6) exit 0 ;;
-            *) echo -e "${RED}Opción inválida${NC}" ;;
+        case "$action" in
+            UP)
+                ((selected--))
+                if [ $selected -lt 0 ]; then selected=$((total-1)); fi
+                ;;
+            DOWN)
+                ((selected++))
+                if [ $selected -ge $total ]; then selected=0; fi
+                ;;
+            ENTER)
+                case $selected in
+                    0) start; read -p "Presiona Enter para continuar..." ;;
+                    1) stop; read -p "Presiona Enter para continuar..." ;;
+                    2) configure; read -p "Presiona Enter para continuar..." ;;
+                    3) show_info; read -p "Presiona Enter para continuar..." ;;
+                    4) open_ssh; read -p "Presiona Enter para continuar..." ;;
+                    5) exit 0 ;;
+                esac
+                ;;
         esac
     done
 }
 
 # Ejecutar menú
-main_menu
+check_env
+show_menu
